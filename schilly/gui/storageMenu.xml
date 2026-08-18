@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui>
+    <screen name="StorageMenu">
+        <size width="600" height="400" />
+        <title text="Palettenlager Management" />
+        <elements>
+            <list id="palList" x="10" y="40" width="580" height="240" />
+            <label id="lblInfo" x="10" y="290" width="580" height="20" text="Select a storage to manage" />
+            <button id="btnStore" x="10" y="320" width="140" height="30" text="Store" />
+            <button id="btnWithdraw" x="160" y="320" width="140" height="30" text="Withdraw" />
+            <button id="btnSell" x="310" y="320" width="140" height="30" text="Sell" />
+            <button id="btnTransfer" x="460" y="320" width="130" height="30" text="Transfer" />
+        </elements>
+    </screen>
+</ui>
