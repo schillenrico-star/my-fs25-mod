@@ -1,5 +1,5 @@
 -- schilly/scripts/PalettenlagerAI.lua
--- Enhanced Pallet Storage AI manager with save/load and network transfer
+-- Enhanced Pallet Storage AI manager with save/load, network transfer and objectStorage integration
 
 PalettenlagerAI = PalettenlagerAI or {}
 PalettenlagerAI.placeables = PalettenlagerAI.placeables or {}
@@ -14,6 +14,18 @@ local function safeGetOwnerFarmId(placeable)
         if ok then return v end
     end
     if placeable.farmId ~= nil then return placeable.farmId end
+    return nil
+end
+
+local function tryCall(obj, methodNames, ...)
+    if obj == nil then return nil end
+    for _,name in ipairs(methodNames) do
+        local f = obj[name]
+        if type(f) == "function" then
+            local ok, res1, res2 = pcall(f, obj, ...)
+            if ok then return res1, res2 end
+        end
+    end
     return nil
 end
 
@@ -53,10 +65,85 @@ function PalettenlagerAI.findAndRegisterAll()
     end
 end
 
--- Basic local actions
+-- Utility: attempt to read actual stored count from placeable.objectStorage using known method names
+function PalettenlagerAI.getCurrentFill(id)
+    local entry = PalettenlagerAI.placeables[id]
+    if not entry then return 0 end
+    local p = entry.placeable
+    if p and p.objectStorage then
+        -- try common method names
+        local tryNames = {"getStoredObjectCount", "getNumStoredObjects", "getNumObjects", "getFillLevel", "getFillUnits", "getStoredObjectsCount"}
+        for _,name in ipairs(tryNames) do
+            local f = p.objectStorage[name]
+            if type(f) == "function" then
+                local ok, res = pcall(f, p.objectStorage)
+                if ok and type(res) == "number" then
+                    entry.current = res
+                    return res
+                end
+            end
+        end
+        -- some implementations store objects table
+        if p.objectStorage.storedObjects and type(p.objectStorage.storedObjects) == "table" then
+            entry.current = #p.objectStorage.storedObjects
+            return entry.current
+        end
+    end
+    -- fallback to internal counter
+    return entry.current or 0
+end
+
+-- Attempt to call placeable.objectStorage's add/store methods, fallback to internal counter
+function PalettenlagerAI._objectStorageAdd(entry, amount)
+    local p = entry.placeable
+    if p and p.objectStorage then
+        local tryNames = {"storeObject", "addObject", "addToStorage", "spawnObject", "insertObject", "store"}
+        for _,name in ipairs(tryNames) do
+            local f = p.objectStorage[name]
+            if type(f) == "function" then
+                local ok, res = pcall(f, p.objectStorage, amount)
+                if ok then
+                    -- res may be number stored
+                    return true, (type(res) == "number" and res) or amount
+                end
+            end
+        end
+    end
+    return false
+end
+
+function PalettenlagerAI._objectStorageRemove(entry, amount)
+    local p = entry.placeable
+    if p and p.objectStorage then
+        local tryNames = {"withdrawObject", "removeObject", "takeFromStorage", "popObject", "withdraw"}
+        for _,name in ipairs(tryNames) do
+            local f = p.objectStorage[name]
+            if type(f) == "function" then
+                local ok, res = pcall(f, p.objectStorage, amount)
+                if ok then
+                    return true, (type(res) == "number" and res) or amount
+                end
+            end
+        end
+    end
+    return false
+end
+
+-- Basic local actions (use objectStorage if available)
 function PalettenlagerAI.store(id, amount)
     local entry = PalettenlagerAI.placeables[id]
     if not entry then return false, "not found" end
+    amount = tonumber(amount) or 0
+
+    -- try to add via objectStorage
+    local addedOk, added = PalettenlagerAI._objectStorageAdd(entry, amount)
+    if addedOk then
+        -- refresh current
+        PalettenlagerAI.getCurrentFill(id)
+        return true, added
+    end
+
+    -- fallback to counter
     local can = math.max(0, (entry.capacity or 0) - (entry.current or 0))
     local toStore = math.min(can, amount)
     entry.current = (entry.current or 0) + toStore
@@ -66,6 +153,16 @@ end
 function PalettenlagerAI.withdraw(id, amount)
     local entry = PalettenlagerAI.placeables[id]
     if not entry then return false, "not found" end
+    amount = tonumber(amount) or 0
+
+    -- try to remove via objectStorage
+    local removedOk, removed = PalettenlagerAI._objectStorageRemove(entry, amount)
+    if removedOk then
+        PalettenlagerAI.getCurrentFill(id)
+        return true, removed
+    end
+
+    -- fallback
     local toWithdraw = math.min(entry.current or 0, amount)
     entry.current = (entry.current or 0) - toWithdraw
     return true, toWithdraw
@@ -108,21 +205,10 @@ function PalettenlagerAI.transferToFarm(fromId, targetFarmId, amount)
     end
 
     -- remote: send event to server/clients
-    if g_server ~= nil then
-        -- server: broadcast to clients
-        if g_eventManager ~= nil then
-            local event = PalettenlagerTransferEvent:new(fromId, targetFarmId, withdrawn)
-            g_eventManager:raise(event)
-            print("[PalettenlagerAI] Broadcasted transfer event for remote farm")
-            -- wait for remote confirmation in event handling; for now return placeholder
-            return true, withdrawn
-        end
-    else
-        -- client: send to server via event system
-        if g_eventManager ~= nil then
-            local event = PalettenlagerTransferEvent:new(fromId, targetFarmId, withdrawn)
-            g_eventManager:raise(event)
-            print("[PalettenlagerAI] Sent transfer event to server for remote farm")
+    if g_server ~= nil or g_client ~= nil then
+        if PalettenlagerTransferEvent ~= nil then
+            PalettenlagerTransferEvent.send(fromId, targetFarmId, withdrawn)
+            print("[PalettenlagerAI] Sent transfer event for remote farm (best-effort)")
             return true, withdrawn
         end
     end
@@ -168,7 +254,8 @@ function PalettenlagerAI.saveToSavegame(savegame)
     if savegame == nil then return end
     local mapKey = savegame.mapKey or (g_currentMission and g_currentMission.missionInfo and g_currentMission.missionInfo.savegameIndex) or "default"
     local key = string.format("%s_%s", PalettenlagerAI.saveKey, tostring(mapKey))
-    local xml = createXMLFile(key, "", "palettenlager")
+    local xmlFile = key .. ".xml"
+    local xml = createXMLFile(key, xmlFile)
     local i = 0
     for id,entry in pairs(PalettenlagerAI.placeables) do
         setXMLString(xml, string.format("palettenlager.placeable(%d)##id", i), id)
@@ -186,7 +273,6 @@ function PalettenlagerAI.loadFromSavegame(savegame)
     local key = string.format("%s_%s", PalettenlagerAI.saveKey, tostring(mapKey))
     local xmlFile = key .. ".xml"
     if not fileExists(xmlFile) then
-        -- nothing saved yet
         return
     end
     local xml = loadXMLFile(key, xmlFile)
@@ -219,7 +305,6 @@ end
 
 -- Hook into mission save/load events if available
 if g_messageCenter ~= nil and MessageType ~= nil then
-    -- attempt to listen for save and mission loaded
     if MessageType.SAVEGAME_SAVED then
         g_messageCenter:subscribe(MessageType.SAVEGAME_SAVED, {
             onSavegameSaved = function(_, savegame) PalettenlagerAI.saveToSavegame(savegame) end
