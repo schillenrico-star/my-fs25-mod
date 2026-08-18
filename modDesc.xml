@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<modDesc descVersion="105">
+	<author>BlackPanter Modding</author>
+	<contributor>[LSMT] BlackPanter Stefan</contributor>
+	
+	<version>1.0.0.0</version>
+
+	<title>
+		<en>Pallet Storage</en>
+		<de>Palettenlager</de>
+		<fr>Entrepôt De Palettes</fr>
+	</title>
+	
+	<description>
+    <en>
+<![CDATA[
+In this pallet warehouse you can store up to 800 pallets of any kind.
+The pallet warehouse can be operated with or without solar panels, the income per hour is $250.
+
+- Category: Ctorages
+- Price: $40.000
+- Monthly Maintenance costs: $44
+- Capacity: 800 Pallets
+- Configurations: Activate solar panels with key F
+         ]]>
+    </en>
+
+    <de>
+<![CDATA[
+In diesem Palettenlager kannst du bis zu 800 Paletten jeglicher Art einlagern.
+Das Palettenlager kann mit oder ohne Solarplatten betrieben werden, das Einkommen pro Stunde bträgt 250€.
+
+- Kategorie: Lager
+- Preis: 40.000€
+- Monatliche Unterhaltskosten: 44€
+- Kapazität: 800 Paletten
+- Konfigurationen: mit Taste F Solarplatten aktivieren
+     ]]>
+    </de>
+
+    <fr>
+        <![CDATA[
+Dans cet entrepôt de palettes, vous pouvez stocker jusqu'à 800 palettes de tout type.
+L'entrepôt de palettes peut être exploité avec ou sans panneaux solaires, le revenu horaire est de 250€.
+
+- Catégorie: Entrepôt
+- Prix: 40.000€
+- Frais d'entretien mensuels: 44€
+- Capacité: 800 Palettes
+- Configurations: Activer les panneaux solaires avec la touche F
+       ]]>
+    </fr>
+	</description>
+
+	<iconFilename>icon_PalletStorage.dds</iconFilename>
+	
+	<multiplayer supported="true" />
+
+	<storeItems>
+		<storeItem xmlFilename="PalletStorage.xml"/>
+	</storeItems>
+
+
+
+	<l10n>
+		<text name="shopItem_objektStorage">
+		<en>Pallet Storage</en>
+		<de>Palettenlager</de>
+		<fr>Entrepôt De Palettes</fr>
+		</text>
+		<text name="function_objektStorage">
+		<en>In this pallet warehouse you can store up to 800 pallets of any kind. The pallet warehouse can be operated with or without solar panels, the income per hour is $250. The farmers of Lümmel´s wish you a lot of fun.</en>
+		<de>In diesem Palettenlager kannst du bis zu 800 Paletten jeglicher Art einlagern. Das Palettenlager kann mit oder ohne Solarplatten betrieben werden, das Einkommen pro Stunde bträgt 250€. Viel Spaß wünschen euch die Bauern Lümmel´s.</de>
+		<fr>Dans cet entrepôt de palettes, vous pouvez stocker jusqu'à 800 palettes de tout type. L'entrepôt de palettes peut être exploité avec ou sans panneaux solaires, le revenu horaire est de 250€. Les agriculteurs de Lümmel vous souhaitent beaucoup de plaisir.</fr>
+		</text>	
+	</l10n>
+
+</modDesc>

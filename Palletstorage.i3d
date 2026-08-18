@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<i3D name="Palletstorage.i3d" version="1.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://i3d.giants.ch/schema/i3d-1.6.xsd">
+  <Asset>
+    <Export program="GIANTS Editor 64bit" version="10.0.11"/>
+  </Asset>
+
+  <Files>
+    <File fileId="16" filename="textures/garageWoodRoof_diffuse.dds"/>
+    <File fileId="9" filename="textures/sharedWood_diffuse.dds"/>
+    <File fileId="12" filename="$data/maps/textures/shared/assetLibraryDecals_diffuse.png"/>
+    <File fileId="6" filename="$data/maps/textures/shared/props/icicles_diffuse.png"/>
+    <File fileId="7" filename="$data/maps/textures/shared/props/icicles_normal.png"/>
+    <File fileId="8" filename="$data/maps/textures/shared/props/icicles_specular.png"/>
+    <File fileId="1" filename="$data/maps/textures/shared/snow_diffuse.png"/>
+    <File fileId="2" filename="$data/maps/textures/shared/snow_normal.png"/>
+    <File fileId="3" filename="$data/maps/textures/shared/snow_specular.png"/>
+    <File fileId="24" filename="$data/placeables/rudolfHormann/garageContractor/garageContractor01_diffuse.png"/>
+    <File fileId="25" filename="$data/placeables/rudolfHormann/garageContractor/garageContractor01_normal.png"/>
+    <File fileId="26" filename="$data/placeables/rudolfHormann/garageContractor/garageContractor01_specular.png"/>
+    <File fileId="17" filename="$data/placeables/rudolfHormann/garageWoodRoof/garageWoodRoof_normal.dds"/>
+    <File fileId="18" filename="$data/placeables/rudolfHormann/garageWoodRoof/garageWoodRoof_specular.dds"/>
+    <File fileId="10" filename="$data/placeables/rudolfHormann/shared/sharedWood_normal.png"/>
+    <File fileId="11" filename="$data/placeables/rudolfHormann/shared/sharedWood_specular.png"/>
+    <File fileId="19" filename="$data/placeables/rudolfHormann/shared/solarPanels_diffuse.png"/>
+    <File fileId="20" filename="$data/placeables/rudolfHormann/shared/solarPanels_normal.png"/>
+    <File fileId="21" filename="$data/placeables/rudolfHormann/shared/solarPanels_specular.png"/>
+    <File fileId="15" filename="$data/shaders/decalShader.xml"/>
+    <File fileId="22" filename="$data/shaders/placeableShader.xml"/>
+    <File fileId="4" filename="$data/shaders/snowHeapShader.xml"/>
+    <File fileId="13" filename="$data/shared/assets/assetLibraryDecals_normal.png"/>
+    <File fileId="14" filename="$data/shared/assets/assetLibraryDecals_vmask.png"/>
+    <File fileId="29" filename="$data/shared/warningStripes_diffuse.dds"/>
+    <File fileId="30" filename="$data/shared/warningStripes_normal.dds"/>
+    <File fileId="31" filename="$data/shared/warningStripes_specular.dds"/>
+  </Files>
+
+
+  <Materials>
+    <Material name="assetLibraryDecals_mat" materialId="5" alphaBlending="true" customShaderId="15">
+      <Texture fileId="12"/>
+      <Normalmap fileId="13"/>
+      <Glossmap fileId="14"/>
+    </Material>
+    <Material name="garageContractor01_mat" materialId="6">
+      <Texture fileId="24"/>
+      <Normalmap fileId="25"/>
+      <Glossmap fileId="26"/>
+    </Material>
+    <Material name="garageWoodRoof_mat" materialId="7">
+      <Texture fileId="16"/>
+    </Material>
+    <Material name="garageWoodRoof_mat" materialId="8">
+      <Texture fileId="16"/>
+      <Normalmap fileId="17"/>
+      <Glossmap fileId="18"/>
+    </Material>
+    <Material name="icicles_mat" materialId="9" alphaBlending="true" customShaderId="4" customShaderVariation="icicle">
+      <Texture fileId="6"/>
+      <Normalmap fileId="7"/>
+      <Glossmap fileId="8"/>
+      <Refractionmap coeff="1" bumpScale="0.1" withSSRData="false"/>
+    </Material>
+    <Material name="lambert1" materialId="10" diffuseColor="0.494118 0.494118 0.494118 1">
+    </Material>
+    <Material name="lambert1" materialId="11" diffuseColor="0.501961 0.501961 0.501961 1">
+    </Material>
+    <Material name="sharedWood_mat" materialId="12">
+      <Texture fileId="9"/>
+      <Normalmap fileId="10"/>
+      <Glossmap fileId="11"/>
+    </Material>
+    <Material name="snow_mat" materialId="13" customShaderId="4">
+      <Texture fileId="1"/>
+      <Normalmap fileId="2" bumpDepth="0.5"/>
+      <Glossmap fileId="3"/>
+    </Material>
+    <Material name="solarPanels_mat" materialId="14" customShaderId="22">
+      <Texture fileId="19"/>
+      <Normalmap fileId="20"/>
+      <Glossmap fileId="21"/>
+    </Material>
+    <Material name="warningStripes_mat" materialId="15">
+      <Texture fileId="29"/>
+    </Material>
+    <Material name="warningStripes_mat" materialId="16">
+      <Texture fileId="29"/>
+      <Normalmap fileId="30"/>
+      <Glossmap fileId="31"/>
+    </Material>
+  </Materials>
+
+
+  <Shapes externalShapesFile="Palletstorage.i3d.shapes">
+  </Shapes>
+
+  <Scene>
+    <TransformGroup name="garageWoodRoof" nodeId="38">
+      <TransformGroup name="clearAreas" nodeId="39">
+        <TransformGroup name="clearAreaStart01" translation="-8.5 -0.003583 -5.5" nodeId="40">
+          <TransformGroup name="clearAreaWidth01" translation="0 0 11" nodeId="41"/>
+          <TransformGroup name="clearAreaHeight01" translation="17 0 0" nodeId="42"/>
+        </TransformGroup>
+      </TransformGroup>
+      <TransformGroup name="leveling" nodeId="43">
+        <TransformGroup name="levelAreaStart01" translation="-9 0 -6" nodeId="44">
+          <TransformGroup name="levelAreaWidth01" translation="0 0 13" nodeId="45"/>
+          <TransformGroup name="levelAreaHeight01" translation="18 0 0" nodeId="46"/>
+        </TransformGroup>
+      </TransformGroup>
+      <TransformGroup name="indoorAreas" nodeId="47">
+        <TransformGroup name="indoorAreaStart01" translation="-8.5 0 -5.5" nodeId="48">
+          <TransformGroup name="indoorAreaWidth01" translation="0 0 10.5" nodeId="49"/>
+          <TransformGroup name="indoorAreaHeight01" translation="17 0 0" nodeId="50"/>
+        </TransformGroup>
+      </TransformGroup>
+      <TransformGroup name="tipOcclusionUpdateAreas" nodeId="51">
+        <TransformGroup name="tipOcclusionUpdateAreaStart01" translation="-8 0 -5.5" nodeId="52">
+          <TransformGroup name="tipOcclusionUpdateAreaEnd01" translation="16 0 10.5" nodeId="53"/>
+        </TransformGroup>
+      </TransformGroup>
+      <TransformGroup name="testAreas" nodeId="54">
+        <TransformGroup name="testAreaStart01" translation="-8 0 -5.5" nodeId="55">
+          <TransformGroup name="testAreaEnd01" translation="16 5.5 10.5" nodeId="56"/>
+        </TransformGroup>
+      </TransformGroup>
+      <TransformGroup name="visuals" nodeId="57">
+        <TransformGroup name="visual_lod" translation="0 0.02 0" lodDistance="0 80" nodeId="58">
+          <TransformGroup name="LOD0" nodeId="59">
+            <TransformGroup name="winter" nodeId="60">
+              <Shape name="snow" shapeId="1" clipDistance="150" nodeId="61" castsShadows="true" receiveShadows="true" materialIds="13" weatherRequiredMask="0x400"/>
+              <Shape name="icicles" shapeId="2" clipDistance="100" nodeId="62" castsShadows="true" receiveShadows="true" materialIds="9" weatherRequiredMask="0x400"/>
+            </TransformGroup>
+            <Shape name="woodStructure" shapeId="3" clipDistance="300" nodeId="63" castsShadows="true" receiveShadows="true" materialIds="12"/>
+            <Shape name="screwsDecals" shapeId="4" clipDistance="50" nodeId="64" castsShadows="false" receiveShadows="true" decalLayer="1" materialIds="5"/>
+            <Shape name="garageWoodRoof01" shapeId="5" clipDistance="300" nodeId="65" castsShadows="true" receiveShadows="true" materialIds="7"/>
+          </TransformGroup>
+          <TransformGroup name="LOD1" nodeId="66">
+            <Shape name="garageWoodRoof01_LOD" shapeId="6" clipDistance="600" nodeId="67" castsShadows="true" receiveShadows="true" materialIds="8"/>
+            <Shape name="woodStructure_LOD" shapeId="7" clipDistance="600" nodeId="68" castsShadows="true" receiveShadows="true" materialIds="12"/>
+          </TransformGroup>
+        </TransformGroup>
+        <TransformGroup name="solarPanels" translation="0 0.02 0" clipDistance="300" nodeId="69">
+          <TransformGroup name="visual_lod" translation="-2.71954 0.454581 -2.42143" lodDistance="0 60" nodeId="70">
+            <Shape name="LOD0" translation="2.55249 3.69933 2.42092" shapeId="8" nodeId="71" castsShadows="true" receiveShadows="true" materialIds="14"/>
+            <Shape name="LOD1" translation="2.54725 3.69837 2.41638" shapeId="9" nodeId="72" castsShadows="true" receiveShadows="true" materialIds="14"/>
+          </TransformGroup>
+          <Shape name="supports" shapeId="10" clipDistance="50" nodeId="73" castsShadows="true" receiveShadows="true" materialIds="6"/>
+        </TransformGroup>
+      </TransformGroup>
+      <TransformGroup name="collision" nodeId="74">
+        <Shape name="collision" translation="0 2.654 -0.03018" shapeId="11" static="true" collisionFilterGroup="0x1034" collisionFilterMask="0xfffffbff" nodeId="75" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="11"/>
+        <Shape name="tipCol01" translation="2.48139 0.00275 3.28805" shapeId="12" static="true" collisionFilterGroup="0x8" collisionFilterMask="0x1" nodeId="76" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="11"/>
+        <Shape name="tipCol02" translation="-2.54944 0.003 3.28805" shapeId="12" static="true" collisionFilterGroup="0x8" collisionFilterMask="0x1" nodeId="77" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="11"/>
+        <Shape name="tipCol03" translation="7.50705 0.003 -0.017253" shapeId="13" static="true" collisionFilterGroup="0x8" collisionFilterMask="0x1" nodeId="78" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="11"/>
+        <Shape name="tipCol04" translation="-7.41501 0.003 -0.017253" shapeId="13" static="true" collisionFilterGroup="0x8" collisionFilterMask="0x1" nodeId="79" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="11"/>
+        <Shape name="tipCol05" translation="0 0.003 -3.35372" shapeId="14" static="true" collisionFilterGroup="0x8" collisionFilterMask="0x1" nodeId="80" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="11"/>
+        <Shape name="collisionObjectStorage" translation="-0.0146969 1.52147 1.03002" scale="1.23736 0.688562 0.222342" shapeId="15" static="true" collisionFilterGroup="0x103c" collisionFilterMask="0xfffffbff" nodeId="81" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="11"/>
+      </TransformGroup>
+      <Shape name="occluderMesh" translation="1e-06 1.60775 -0.064149" shapeId="16" clipDistance="250" nodeId="82" castsShadows="true" receiveShadows="true" nonRenderable="true" occluder="true" materialIds="11"/>
+      <TransformGroup name="objectStorage" translation="0.205174 0 0.0210246" nodeId="83">
+        <TransformGroup name="areas" nodeId="84">
+          <TransformGroup name="spawnArea1Start" translation="10.134 -0.01 4.28038" rotation="0 -90 0" nodeId="85">
+            <TransformGroup name="spawnArea1End" translation="3.27952 0 6.1882" nodeId="86"/>
+          </TransformGroup>
+          <TransformGroup name="storageArea1Start" translation="6.66467 -6.46883e-16 -2.64639" rotation="-4.07111e-13 -90 0" nodeId="87">
+            <TransformGroup name="storageArea1End" translation="5.31904 9.91583e-23 13.666" nodeId="88"/>
+          </TransformGroup>
+        </TransformGroup>
+        <Shape name="objectTrigger" translation="-3.21757 0.45142 5.99955" scale="1.5147 1 1.21723" shapeId="17" static="true" trigger="true" collisionFilterGroup="0x20000000" collisionFilterMask="0x50000" nodeId="89" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="10">
+          <TransformGroup name="objectTriggerMarker" translation="0.800272 -0.385715 -0.435961" scale="0.660195 1 0.821536" clipDistance="350" nodeId="90"/>
+        </Shape>
+        <Shape name="playerTrigger" translation="2.58645 0.5 4.66676" shapeId="18" static="true" trigger="true" collisionFilterGroup="0x20000000" collisionFilterMask="0x110000" nodeId="91" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="10">
+          <TransformGroup name="markerPlayer" translation="-0.235685 -0.434295 0" clipDistance="350" nodeId="92"/>
+        </Shape>
+        <Shape name="infoTrigger" translation="0.000268608 1.66444 1.29044" scale="1.51713 1 1.04546" shapeId="19" static="true" trigger="true" collisionFilterGroup="0x20000000" collisionFilterMask="0x110000" nodeId="93" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="10"/>
+        <TransformGroup name="teleportNode" translation="-0.228898 0 6.76227" nodeId="94"/>
+        <TransformGroup name="mapPosition" translation="-0.231873 0 0.674217" nodeId="95"/>
+        <TransformGroup name="marker" translation="0.064757 0 -0.0210246" nodeId="96">
+          <Shape name="warningStripesCorner" translation="1.46117 0.00132685 4.23138" rotation="-3.46703e-06 -90 0" shapeId="20" clipDistance="200" nodeId="97" castsShadows="false" receiveShadows="true" decalLayer="1" materialIds="16">
+            <Shape name="warningStripesCorner" translation="-1.53476e-05 -1.00044e-11 9.35258" rotation="-1.16744e-06 90 0" shapeId="20" clipDistance="200" nodeId="98" castsShadows="false" receiveShadows="true" decalLayer="1" materialIds="16"/>
+            <Shape name="warningStripesCorner" translation="3.61693 -2.92023e-06 9.32158" rotation="180 -1.06816e-05 -180" shapeId="20" clipDistance="200" nodeId="99" castsShadows="false" receiveShadows="true" decalLayer="1" materialIds="15"/>
+            <Shape name="warningStripesCorner" translation="3.57772 -2.64291e-06 0.026701" rotation="3.15619e-06 -90 0" shapeId="20" clipDistance="200" nodeId="100" castsShadows="false" receiveShadows="true" decalLayer="1" materialIds="16"/>
+          </Shape>
+          <Shape name="warningStripesCorner" translation="10.148 0.00132632 4.23138" rotation="-3.46703e-06 -90 0" shapeId="20" clipDistance="200" nodeId="101" castsShadows="false" receiveShadows="true" decalLayer="1" materialIds="16">
+            <Shape name="warningStripesCorner" translation="-1.55898e-05 -1.00044e-11 6.58193" rotation="-1.16744e-06 90 0" shapeId="20" clipDistance="200" nodeId="102" castsShadows="false" receiveShadows="true" decalLayer="1" materialIds="16"/>
+            <Shape name="warningStripesCorner" translation="3.61693 -3.1589e-06 6.59151" rotation="180 -1.06816e-05 -180" shapeId="20" clipDistance="200" nodeId="103" castsShadows="false" receiveShadows="true" decalLayer="1" materialIds="15"/>
+            <Shape name="warningStripesCorner" translation="3.57772 -2.64291e-06 0.026701" rotation="3.15619e-06 -90 0" shapeId="20" clipDistance="200" nodeId="104" castsShadows="false" receiveShadows="true" decalLayer="1" materialIds="16"/>
+          </Shape>
+        </TransformGroup>
+      </TransformGroup>
+    </TransformGroup>
+  </Scene>
+
+</i3D>
