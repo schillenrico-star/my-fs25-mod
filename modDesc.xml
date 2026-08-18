@@ -57,7 +57,7 @@ L'entrepôt de palettes peut être exploité avec ou sans panneaux solaires, le 
 	<multiplayer supported="true" />
 
 	<storeItems>
-		<storeItem xmlFilename="PalletStorage.xml"/>
+		<storeItem xmlFilename="schilly/placeables/PalletStorage.xml"/>
 	</storeItems>
 
 
@@ -69,9 +69,9 @@ L'entrepôt de palettes peut être exploité avec ou sans panneaux solaires, le 
 		<fr>Entrepôt De Palettes</fr>
 		</text>
 		<text name="function_objektStorage">
-		<en>In this pallet warehouse you can store up to 800 pallets of any kind. The pallet warehouse can be operated with or without solar panels, the income per hour is $250. The farmers of Lümmel´s wish you a lot of fun.</en>
-		<de>In diesem Palettenlager kannst du bis zu 800 Paletten jeglicher Art einlagern. Das Palettenlager kann mit oder ohne Solarplatten betrieben werden, das Einkommen pro Stunde bträgt 250€. Viel Spaß wünschen euch die Bauern Lümmel´s.</de>
-		<fr>Dans cet entrepôt de palettes, vous pouvez stocker jusqu'à 800 palettes de tout type. L'entrepôt de palettes peut être exploité avec ou sans panneaux solaires, le revenu horaire est de 250€. Les agriculteurs de Lümmel vous souhaitent beaucoup de plaisir.</fr>
+		<en>In this pallet warehouse you can store up to 800 pallets of any kind. The pallet warehouse can be operated with or without solar panels, the income per hour is $250. The farmers of Lümmel´[...]
+		<de>In diesem Palettenlager kannst du bis zu 800 Paletten jeglicher Art einlagern. Das Palettenlager kann mit oder ohne Solarplatten betrieben werden, das Einkommen pro Stunde bträgt 250€. Vi[...]
+		<fr>Dans cet entrepôt de palettes, vous pouvez stocker jusqu'à 800 palettes de tout type. L'entrepôt de palettes peut être exploité avec ou sans panneaux solaires, le revenu horaire est de [...]
 		</text>	
 	</l10n>
 

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<placeable type="objectStorage" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../shared/xml/schema/placeable.xsd">
+    <storeData>
+        <name>$l10n_shopItem_objektStorage</name>
+        <functions>
+            <function>$l10n_function_objektStorage</function>
+        </functions>
+        <image>textures/store_objektStorage.dds</image>
+        <price>40000</price>
+        <dailyUpkeep>44</dailyUpkeep>
+        <lifetime>1000</lifetime>
+        <rotation>0</rotation>
+        <brand>None</brand>
+        <species>placeable</species>
+        <category>storages</category>
+        <brush>
+            <type>placeable</type>
+            <category>buildings</category>
+            <tab>silos</tab>
+        </brush>
+		<canBeSold>true</canBeSold>
+		<showInStore>true</showInStore>
+        
+        <vertexBufferMemoryUsage>433152</vertexBufferMemoryUsage>
+        <indexBufferMemoryUsage>76544</indexBufferMemoryUsage>
+        <textureMemoryUsage>5046272</textureMemoryUsage>
+        <audioMemoryUsage>0</audioMemoryUsage>
+        <instanceVertexBufferMemoryUsage>0</instanceVertexBufferMemoryUsage>
+        <instanceIndexBufferMemoryUsage>0</instanceIndexBufferMemoryUsage>
+    </storeData>
+
+    <base>
+        <!-- i3d is located in the mod root; relative path from this XML (schilly/placeables) points up one level -->
+        <filename>../Palletstorage.i3d</filename>
+		<canBeRenamed>true</canBeRenamed>
+	    <boughtWithFarmland>true</boughtWithFarmland>
+    </base>
+
+    <placement useRandomYRotation="false" useManualYRotation="true">
+        <testAreas>
+            <testArea startNode="testAreaStart01" endNode="testAreaEnd01" />
+        </testAreas>
+
+        <sounds>
+            <place template="smallImp" />
+        </sounds>
+    </placement>
+
+    <clearAreas>
+        <clearArea startNode="clearAreaStart01" widthNode="clearAreaWidth01" heightNode="clearAreaHeight01"/>
+    </clearAreas>
+
+    <leveling requireLeveling="true" maxSmoothDistance="5" maxSlope="75" maxEdgeAngle="30">
+        <levelAreas>
+            <levelArea startNode="levelAreaStart01" widthNode="levelAreaWidth01" heightNode="levelAreaHeight01" groundType="asphalt"/>
+        </levelAreas>
+    </leveling>
+
+    <indoorAreas>
+        <indoorArea startNode="indoorAreaStart01" widthNode="indoorAreaWidth01" heightNode="indoorAreaHeight01"/>
+    </indoorAreas>
+
+    <tipOcclusionUpdateAreas>
+        <tipOcclusionUpdateArea startNode="tipOcclusionUpdateAreaStart01" endNode="tipOcclusionUpdateAreaEnd01" />
+    </tipOcclusionUpdateAreas>
+
+    <ai>
+        <updateAreas>
+            <updateArea startNode="tipOcclusionUpdateAreaStart01" endNode="tipOcclusionUpdateAreaEnd01" />
+        </updateAreas>
+    </ai>
+
+    <solarPanels>
+        <solarPanelsConfigurations>
+        <solarPanelsConfiguration name="$l10n_ui_no" isActive="false">
+        <objectChange node="solarPanels" visibilityActive="false"/>
+    </solarPanelsConfiguration>
+
+            <solarPanelsConfiguration name="$l10n_ui_yes" isActive="true" price="18750" incomePerHour="250" />
+        </solarPanelsConfigurations>
+    </solarPanels>
+
+	   <hotspots>
+        <hotspot type="LOADING" linkNode="mapPosition" teleportNode="teleportNode"/>
+    </hotspots>
+
+    <triggerMarkers>
+        <triggerMarker node="objectTriggerMarker" filename="$data/shared/assets/marker/markerIconUnload.i3d" />
+        <triggerMarker node="markerPlayer" filename="$data/shared/assets/marker/markerIconExclamationMark.i3d" />
+    </triggerMarkers>
+
+<infoTrigger triggerNode="infoTrigger"/> 
+
+    <objectStorage supportsBales="false" supportsPallets="true"  capacity="800">
+        <playerTrigger node="playerTrigger" />
+        <objectTrigger node="objectTrigger" />
+        <spawnAreas>
+            <spawnArea startNode="spawnArea1Start" endNode="spawnArea1End"/>
+        </spawnAreas>
+        <storageAreas>
+             <storageArea startNode="storageArea1Start" endNode="storageArea1End"/>
+        </storageAreas>
+    </objectStorage>
+
+    <pointOfInterest>
+        <point triggerNode="objectTrigger" text="$l10n_poi_objectStorageUnload" showOwner="true"  showEveryone="false"/>
+        <point triggerNode="playerTrigger" text="$l10n_poi_objectStorageLoad"   showOwner="true"  showEveryone="false" />
+    </pointOfInterest>	
+
+    <i3dMappings>
+        <i3dMapping id="clearAreaStart01" node="0>0|0" />
+        <i3dMapping id="clearAreaWidth01" node="0>0|0|0" />
+        <i3dMapping id="clearAreaHeight01" node="0>0|0|1" />
+        <i3dMapping id="levelAreaStart01" node="0>1|0" />
+        <i3dMapping id="levelAreaWidth01" node="0>1|0|0" />
+        <i3dMapping id="levelAreaHeight01" node="0>1|0|1" />
+        <i3dMapping id="indoorAreaStart01" node="0>2|0" />
+        <i3dMapping id="indoorAreaWidth01" node="0>2|0|0" />
+        <i3dMapping id="indoorAreaHeight01" node="0>2|0|1" />
+        <i3dMapping id="tipOcclusionUpdateAreaStart01" node="0>3|0" />
+        <i3dMapping id="tipOcclusionUpdateAreaEnd01" node="0>3|0|0" />
+        <i3dMapping id="testAreaStart01" node="0>4|0" />
+        <i3dMapping id="testAreaEnd01" node="0>4|0|0" />
+       <i3dMapping id="solarPanels" node="0>5|1" />
+        
+		<!--Ballenlager-->
+		<i3dMapping id="areas" 				node="0>8|0" />
+		<i3dMapping id="spawnArea1Start" 	node="0>8|0|0" />
+		<i3dMapping id="spawnArea1End" 		node="0>8|0|0|0" />
+		<i3dMapping id="storageArea1Start" 	node="0>8|0|1" />
+		<i3dMapping id="storageArea1End" 		node="0>8|0|1|0" />
+
+		<i3dMapping id="objectTrigger" 		node="0>8|1" />
+		<i3dMapping id="objectTriggerMarker" 	node="0>8|1|0" />
+		<i3dMapping id="playerTrigger" 		node="0>8|2" />
+		<i3dMapping id="markerPlayer" 		node="0>8|2|0" />
+		<i3dMapping id="infoTrigger" 		node="0>8|3" />
+		<i3dMapping id="mapPosition" 		node="0>8|5" />
+		<i3dMapping id="teleportNode" 		node="0>8|4" />
+    </i3dMappings>
+</placeable>
