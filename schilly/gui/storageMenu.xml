@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ui>
     <screen name="StorageMenu">
-        <size width="600" height="400" />
+        <size width="700" height="480" />
         <title text="Palettenlager Management" />
         <elements>
-            <list id="palList" x="10" y="40" width="580" height="240" />
-            <label id="lblInfo" x="10" y="290" width="580" height="20" text="Select a storage to manage" />
-            <button id="btnStore" x="10" y="320" width="140" height="30" text="Store" />
-            <button id="btnWithdraw" x="160" y="320" width="140" height="30" text="Withdraw" />
-            <button id="btnSell" x="310" y="320" width="140" height="30" text="Sell" />
-            <button id="btnTransfer" x="460" y="320" width="130" height="30" text="Transfer" />
+            <list id="palList" x="10" y="40" width="680" height="240" />
+            <label id="lblInfo" x="10" y="290" width="680" height="20" text="Select a storage to manage" />
+
+            <label id="lblAmount" x="10" y="320" width="140" height="20" text="Amount:" />
+            <input id="inputAmount" x="160" y="320" width="120" height="24" text="1" />
+
+            <label id="lblTargetFarm" x="290" y="320" width="140" height="20" text="Target Farm ID:" />
+            <input id="inputTargetFarm" x="430" y="320" width="80" height="24" text="0" />
+
+            <button id="btnStore" x="10" y="360" width="160" height="36" text="Store" />
+            <button id="btnWithdraw" x="180" y="360" width="160" height="36" text="Withdraw" />
+            <button id="btnSell" x="350" y="360" width="160" height="36" text="Sell" />
+            <button id="btnTransferFarm" x="520" y="360" width="170" height="36" text="Transfer to Farm (free)" />
+
+            <button id="btnDistributeStorages" x="10" y="410" width="260" height="36" text="Distribute to other Storages" />
+            <button id="btnDistributeFactories" x="280" y="410" width="260" height="36" text="Distribute to Factories" />
+            <button id="btnClose" x="560" y="410" width="130" height="36" text="Close" />
         </elements>
     </screen>
 </ui>

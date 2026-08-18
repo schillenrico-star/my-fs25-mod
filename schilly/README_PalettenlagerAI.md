@@ -1,18 +1,22 @@
-Kurz: Ich habe die core‑Skripte und die GUI fürs Palettenlager integriert.
+Enhanced PalettenlagerAI
 
-Was ich committet habe (Branch feature/add-palletstorage):
-- schilly/scripts/PalettenlagerAI.lua — Manager mit Registration + Basis‑Funktionen (store/withdraw/sell/transfer)
-- schilly/scripts/PalettenlagerAI_integration.lua — Integration stub, versucht bei Missionsstart die Placeables zu registrieren
-- schilly/gui/storageMenu.xml — einfache GUI Vorlage
+Was ist neu?
+- Cross‑farm transfer stub: PalettenlagerAI.transferToFarm(fromId, targetFarmId, amount)
+  - Tries to find a local placeable owned by the target farm and stores directly.
+  - If none found, logs a placeholder message. Real cross‑farm transfer requires a remote receiver (RPC) which can be added later.
+- Distribution helper: PalettenlagerAI.distribute(fromId, targetFilter, amountPerTarget)
+  - Distributes items to other registered storages (or factories if filter selects them).
+- Utility to find placeables by xml pattern (useful to find factory placeables by name)
 
-Nächste Schritte (empfohlen)
-- Ich kann jetzt:
-  - a) die vorhandene FS25_PalettenlagerAI.zip entpacken und die fertigen GUI/Script‑Assets in schilly/ai/ (vollständige Integration), oder
-  - b) die Skripte weiter ausbauen (Plugin für CoursePlay, detaillierte objectStorage‑Integration, Persistenz im savegame)
+Next recommended steps (I can do these for you):
+1) Complete multiplayer RPC: implement remote handler so a player on another client/server can accept the transfer automatically.
+2) Wire the GUI (schilly/gui/storageMenu.xml) to the PalettenlagerAI methods (button callbacks + list population).
+3) Persist storage levels in the savegame (save/load functions).
+4) Integrate the full FS25_PalettenlagerAI package from the repo (it contains more advanced GUI components and scripts) — I can unpack and merge those now.
 
-Teste lokal:
-1) Checkout feature/add-palletstorage
-2) Packe das Verzeichnis als Mod‑ZIP (modDesc.xml im Root) und lege es in deinen Mods‑Ordner
-3) Starte das Spiel; öffne die Konsole oder Logs, suche nach "[PalettenlagerAI] Registered" Meldungen
+If you want, I will now:
+- Unpack and merge FS25_PalettenlagerAI.zip contents into schilly/ (recommended),
+- Wire up the GUI so buttons call the PalettenlagerAI functions,
+- Implement simple save/load for the current level values.
 
-Willst du, dass ich jetzt die FS25_PalettenlagerAI.zip aus dem Repo entpacke und die dort enthaltenen, bereits fertigen Skripte/GUIs übernehme und so die Integration komplett mache? (ja/nein)
+Reply "merge and wire GUI" to proceed and I'll commit the changes to feature/add-palletstorage.
